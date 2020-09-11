@@ -1,17 +1,22 @@
-import React, { useState } from "react"
-import ActionItem from "./ActionItem"
-import NewAction from "./NewAction"
+import React, { useState } from "react";
+import ActionItem from "./ActionItem";
+import NewAction from "./NewAction";
 
 function Actions() {
-    const [newAction, setNewAction] = useState("")
-    const [actionItems, setActionItems] = useState([])
-    const [show, setShow] = useState(false)
-    const actions = actionItems.map(item => (
-        <ActionItem 
-            key={item.id} item={item} actionItems={actionItems} 
-            setActionItems={setActionItems} handleClick={checkOff}
-        />))
+    // Handle state
+    const [newAction, setNewAction] = useState("");
+    const [actionItems, setActionItems] = useState([]);
+    const [show, setShow] = useState(false);
 
+    // Define a varible to be used for rendering all action items to screen
+    const actions = actionItems.map(item => (
+        <ActionItem
+            key={item.id} item={item} actionItems={actionItems}
+            setActionItems={setActionItems} handleClick={checkOff}
+        />));
+
+    // Helper functions
+    // Update completed state of item objects in ActionItems
     function checkOff(id) {
        const updatedItems = actionItems.map(item => {
            if (id === item.id) {
@@ -21,18 +26,18 @@ function Actions() {
                }
            }
            return item
-       })
-       setActionItems(updatedItems)
+       });
+       setActionItems(updatedItems);
     }
-
+    // Update name of newAction item in state as user types it into input box
     function handleChange(event) {
-        const {value} = event.target
-        setNewAction(value)
+        const { value } = event.target;
+        setNewAction(value);
     }
-    
+    // Update ActionItems with newly created newAction item
     function handleSubmit(event) {
-        event.preventDefault()
-        const nextId = actionItems.length + 1
+        event.preventDefault();
+        const nextId = actionItems.length + 1;
         const newItem = {
             id: nextId,
             action: newAction,
@@ -43,21 +48,22 @@ function Actions() {
                 ...prev,
                 newItem
             ]
-        })
-        setNewAction("")
-        setShow(true)
+        });
+        setNewAction("");
+        setShow(true);
     }
 
+    // Render all action items to screen and input box for submitting a NewAction
     return (
         <main>
             <div className="actions-list">
-                {show && actions}    
+                {show && actions}
             </div>
-            <NewAction 
-                props={{handleSubmit, newAction, handleChange}}
+            <NewAction
+                props={{ handleSubmit, newAction, handleChange }}
             />
         </main>
-    )
+    );
 }
 
-export default Actions
+export default Actions;

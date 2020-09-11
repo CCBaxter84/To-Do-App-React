@@ -1,26 +1,30 @@
-import React, { useRef, useEffect } from "react"
+import React, { useRef, useEffect } from "react";
 
 function ActionItem(props) {
-    const { handleClick } = props
-    const { action, id, completed } = props.item
-    const actionRef = useRef(null)
+    // Import functions for updating state from props
+    const { handleClick } = props;
+    const { action, id, completed } = props.item;
+    // Utilize useRef hook
+    const actionRef = useRef(null);
 
+    // When a component updates, modify .completed css class to add or remove a linethrough effect
     useEffect(() => {
         if (completed === true) {
-            actionRef.current.classList.add("completed")
+            actionRef.current.classList.add("completed");
         } else if (completed === false) {
-            actionRef.current.classList.remove("completed")
+            actionRef.current.classList.remove("completed");
         }
-    })
-    
+    });
+
+    // Render the action item with a checkbox to its left
     return (
         <div className="action-item" ref={actionRef}>
-            <input 
+            <input
                 type="checkbox"
                 onChange={() => handleClick(id)}/>
             {action}
         </div>
-    )
+    );
 }
 
-export default ActionItem
+export default ActionItem;
