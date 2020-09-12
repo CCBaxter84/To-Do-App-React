@@ -1,3 +1,7 @@
+This productivity app is a pretty simple to-do list. New to-do items may be added by typing an item in an input box and clicking a submit button. Newly created items dynamically appear with a checkbox after submissions. Selecting the checkbox causes the item to be linedthrough.
+
+I built this app with React and used functional components. I also utilized the useState hook and the useEffect hook to handle state and component updates.
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
